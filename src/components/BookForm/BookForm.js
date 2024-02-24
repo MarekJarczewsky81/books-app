@@ -1,16 +1,33 @@
-import { useState } from'react';
+import React from'react';
 
-const BookForm = ({ addBook }) => {
+class BookForm extends React.Component {
 
-    const [title, setTitle] = useState('');
-    const [author, setAuthor] = useState('');
+  state = { 
+    title: '', 
+    author: '' 
+  };
 
-    const handleSubmit = e => {
-      e.preventDefault();
-      addBook({ title: title, author: author }); // { title, author } - takze zadziala !!!
-      setTitle(""); // do wyzerowania pól
-      setAuthor(""); // do wyzerowania pól
-    }
+  // metoda naszej klasy
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.addBook({ title: this.state.title, author: this.state.author }); 
+    // this.setState({ ...this.state, title: ''}); 
+    // this.setState({ ...this.state, author: ''}); 
+    this.setState({ ...this.state, title: '', author: ''});
+  }
+
+  // metody pomocnicze do wyciagniecia pola setTitle
+  setTitle = value => {
+    this.setState({...this.state, title: value});
+  }
+
+  setAuthor = value => {
+    this.setState({...this.state, author: value});
+  }
+
+  render() {
+    const { handleSubmit, setTitle, setAuthor } = this;
+    const { title, author } = this.state;
 
     return (
       <form onSubmit={handleSubmit}>
@@ -19,6 +36,7 @@ const BookForm = ({ addBook }) => {
         <button>Add book</button>
       </form>
     );
-};
+  };
+}
 
 export default BookForm;
