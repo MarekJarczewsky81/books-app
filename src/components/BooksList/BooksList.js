@@ -1,7 +1,16 @@
-const BookList = props => {
+const BooksList = ({ books, removeBook }) => {
     return (
-        <h2>BooksList</h2>
+      <ul>
+        {books.map((book) => (
+          <li key={book.id}>
+            {book.title} by {book.author}{" "}
+            <button onClick={() => removeBook(book.id)}>
+              Remove
+            </button>
+          </li>
+        ))}
+      </ul>
     );
 };
 
-export default BookList;
+export default BooksList;
