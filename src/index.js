@@ -6,7 +6,7 @@ import store from './redux/store';
 
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={store}>   {/* // dostarcz do naszej aplikacji taki magazyn: store // */}
     <React.StrictMode>
       <App />
     </React.StrictMode>
